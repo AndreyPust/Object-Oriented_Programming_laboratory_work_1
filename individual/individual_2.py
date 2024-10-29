@@ -9,7 +9,7 @@
 # Дробная часть (копейки) при выводе на экран должны быть отделена от целой части запятой (Вариант 25 (10)).
 
 class Money:
-    # Список номиналов рублевых купюр и копеек
+    # Список номиналов купюр и копеек рубля
     denominations = {
         5000: '5000 руб.',
         1000: '1000 руб.',
@@ -27,11 +27,17 @@ class Money:
     }
 
     def __init__(self):
-        # Инициализация поля для каждого номинала
+        """
+        Метод инициализации поля для каждого номинала.
+        """
+
         self.amounts = {denom: 0 for denom in self.denominations}
 
     def read(self):
-        # Ввод количества купюр и монет с клавиатуры
+        """
+        Ввод количества монет или купюр какого либо номинала.
+        """
+
         try:
             for denom in self.denominations:
                 self.amounts[denom] = int(input(f"Введите количество {self.denominations[denom]}: "))
@@ -39,12 +45,18 @@ class Money:
             print("Ошибка ввода. Все значения должны быть целыми числами.")
 
     def display(self):
-        # Выводим информацию о сумме
+        """
+        Метод вывода информации о сумме.
+        """
+
         total_rubles, total_kopeks = self.total_value()
         print(f"Сумма: {total_rubles},{int(total_kopeks):02d} руб.")
 
     def total_value(self):
-        # Рассчитываем общую сумму денег в рублях и копейках
+        """
+        Метод подсчета денежной суммы.
+        """
+
         total = 0
         for denom, count in self.amounts.items():
             total += denom * count
@@ -54,49 +66,68 @@ class Money:
         return rubles, kopeks
 
     def __add__(self, other):
-        # Сложение двух денежных сумм
+        """
+        Метод сложения денежных сумм.
+        """
+
         result = Money()
         for denom in self.denominations:
             result.amounts[denom] = self.amounts[denom] + other.amounts[denom]
         return result
 
     def __sub__(self, other):
-        # Вычитание двух денежных сумм
+        """
+        Метод вычитания двух денежных сумм.
+        """
+
         result = Money()
         for denom in self.denominations:
             result.amounts[denom] = self.amounts[denom] - other.amounts[denom]
         return result
 
     def __truediv__(self, number):
-        # Деление суммы на дробное число
+        """
+        Метод деления денежной суммы на некоторое число.
+        """
+
         result = Money()
         for denom in self.denominations:
             result.amounts[denom] = int(self.amounts[denom] / number)
         return result
 
     def __mul__(self, number):
-        # Умножение суммы на дробное число
+        """
+        Метод умножения суммы на некоторое дробное число.
+        """
+
         result = Money()
         for denom in self.denominations:
             result.amounts[denom] = int(self.amounts[denom] * number)
         return result
 
     def __eq__(self, other):
-        # Операция сравнения "равно"
+        """
+        Метод, сравнивающий денежные суммы.
+        """
+
         return self.total_value() == other.total_value()
 
     def __lt__(self, other):
-        # Операция сравнения "меньше"
+        """
+        Метод, реализующий операцию сравнения меньше.
+        """
+
         return self.total_value() < other.total_value()
 
     def __le__(self, other):
-        # Операция сравнения "меньше или равно"
+        """
+        Метод, реализующий операцию сравнения меньше или равно.
+        """
+
         return self.total_value() <= other.total_value()
 
 
 if __name__ == "__main__":
-    # Демонстрация работы класса Money
-
     # Ввод первой суммы с клавиатуры
     print("Введите первую сумму:")
     money1 = Money()
