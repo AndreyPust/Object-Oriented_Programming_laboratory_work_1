@@ -19,66 +19,32 @@ class Pair:
         self.first = float(first)  # Цена товара
         self.second = int(second)  # Количество товара
 
-    def get_first(self):
-        return self.first
-
-    def get_second(self):
-        return self.second
-
-
-class PairInput:
-    @staticmethod
-    def read():
-        """
-        Метод, позволяющий производить ввод значений с клавиатуры.
-        """
-
+    def read(self):
+        # Ввод значений с клавиатуры
         try:
-            first = float(input("Введите цену товара (положительное дробное число): "))
-            if first <= 0:
-                raise ValueError("Цена товара должна быть положительным числом!")
+            self.first = float(input("Введите цену товара (положительное дробное число): "))
+            if self.first <= 0:
+                raise ValueError("Цена должна быть положительным числом")
 
-            second = int(input("Введите количество товара (положительное целое число): "))
-            if second <= 0:
-                raise ValueError("Количество товара должно быть положительным целым числом!")
-
-            return Pair(first, second)  # Возвращаем объект Pair с введенными данными
+            self.second = int(input("Введите количество товара (положительное целое число): "))
+            if self.second <= 0:
+                raise ValueError("Количество должно быть положительным целым числом")
         except ValueError as e:
             print(f"Ошибка ввода: {e}")
-            return None
+            return False
+        return True
 
+    def display(self):
+        # Вывод информации о товаре
+        print(f"Цена товара: {self.first}, Количество: {self.second}")
 
-class PairDisplay:
-    @staticmethod
-    def display(any_pair):
-        """
-        Метод, позволяющий выводить информацию о товаре (количество, стоимость).
-        """
-
-        if isinstance(any_pair, Pair):
-            print(f"Цена товара: {any_pair.get_first()}, Количество: {any_pair.get_second()}")
-        else:
-            print("Невозможно вывести данные, объект пары некорректен.")
-
-
-class PairCostCalculator:
-    @staticmethod
-    def cost(any_pair):
-        """
-        Метод, вычисляющий стоимость всего товара.
-        """
-
-        if isinstance(any_pair, Pair):
-            return any_pair.get_first() * any_pair.get_second()
-        else:
-            raise ValueError("Некорректный объект пары для вычисления стоимости!")
+    def cost(self):
+        # Метод для вычисления стоимости товара
+        return self.first * self.second
 
 
 def make_pair(first, second):
-    """
-    Функция для создания объекта Pair с проверкой на корректность данных
-    """
-
+    # Функция для создания объекта Pair
     try:
         return Pair(first, second)
     except ValueError as e:
@@ -86,17 +52,17 @@ def make_pair(first, second):
         return None
 
 
-# Пример использования
+# Пример использования:
 if __name__ == "__main__":
     # Создание объекта через функцию make_pair
-    pair = make_pair(9.99, 5)
+    pair = make_pair(19.99, 5)
 
     if pair:
-        PairDisplay.display(pair)  # Вывод данных
-        print(f"Общая стоимость : {PairCostCalculator.cost(pair)}")  # Расчет стоимости всего товара
+        pair.display()  # Вывод данных
+        print(f"Общая стоимость: {pair.cost()}")  # Расчет стоимости
 
-    # Способ с вводом данных с клавиатуры
-    new_pair = PairInput.read()  # Ввод данных и создание новой пары
-    if new_pair:
-        PairDisplay.display(new_pair)  # Вывод данных
-        print(f"Общая стоимость : {PairCostCalculator.cost(new_pair)}")  # Расчет стоимости всего товара
+    # Ввод данных с клавиатуры
+    new_pair = Pair(1, 1)  # создаем новый объект
+    if new_pair.read():
+        new_pair.display()  # Вывод данных
+        print(f"Общая стоимость: {new_pair.cost()}")  # Расчет стоимости

@@ -65,7 +65,7 @@ class Money:
         kopeks = round((total - rubles) * 100)
         return rubles, kopeks
 
-    def __add__(self, other):
+    def add(self, other):
         """
         Метод сложения денежных сумм.
         """
@@ -75,7 +75,7 @@ class Money:
             result.amounts[denom] = self.amounts[denom] + other.amounts[denom]
         return result
 
-    def __sub__(self, other):
+    def subtraction(self, other):
         """
         Метод вычитания двух денежных сумм.
         """
@@ -85,7 +85,7 @@ class Money:
             result.amounts[denom] = self.amounts[denom] - other.amounts[denom]
         return result
 
-    def __truediv__(self, number):
+    def division(self, number):
         """
         Метод деления денежной суммы на некоторое число.
         """
@@ -95,7 +95,7 @@ class Money:
             result.amounts[denom] = int(self.amounts[denom] / number)
         return result
 
-    def __mul__(self, number):
+    def multiplication(self, number):
         """
         Метод умножения суммы на некоторое дробное число.
         """
@@ -105,26 +105,26 @@ class Money:
             result.amounts[denom] = int(self.amounts[denom] * number)
         return result
 
-    def __eq__(self, other):
+    def equivalent(self, other):
         """
         Метод, сравнивающий денежные суммы.
         """
 
         return self.total_value() == other.total_value()
 
-    def __lt__(self, other):
+    def lt(self, other):
         """
         Метод, реализующий операцию сравнения меньше.
         """
 
         return self.total_value() < other.total_value()
 
-    def __le__(self, other):
+    def le(self, other):
         """
-        Метод, реализующий операцию сравнения меньше или равно.
+        Метод, реализующий операцию сравнения больше.
         """
 
-        return self.total_value() <= other.total_value()
+        return self.total_value() > other.total_value()
 
 
 if __name__ == "__main__":
@@ -146,29 +146,29 @@ if __name__ == "__main__":
     money2.display()
 
     # Сложение сумм
-    sum_result = money1 + money2
+    sum_result = money1.add(money2)
     print("\nРезультат сложения:")
     sum_result.display()
 
     # Вычитание сумм
-    sub_result = money1 - money2
+    sub_result = money1.subtraction(money2)
     print("\nРезультат вычитания:")
     sub_result.display()
 
     # Деление суммы на число
-    div_result = money1 / 2
+    div_result = money1.division(2)
     print("\nРезультат деления первой суммы на 2:")
     div_result.display()
 
     # Умножение суммы на число
-    mul_result = money1 * 1.5
+    mul_result = money1.multiplication(1.5)
     print("\nРезультат умножения первой суммы на 1.5:")
     mul_result.display()
 
     # Сравнение сумм
-    if money1 == money2:
+    if money1.equivalent(money2):
         print("\nСуммы равны.")
-    elif money1 < money2:
+    elif money1.lt(money2):
         print("\nПервая сумма меньше второй.")
-    else:
+    elif money1.le(money2):
         print("\nПервая сумма больше второй.")
