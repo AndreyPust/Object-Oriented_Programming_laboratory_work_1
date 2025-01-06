@@ -1,0 +1,45 @@
+[project]
+name = "lab-oop-1"
+version = "0.1.0"
+description = "Лабораторная работа 1"
+authors = [
+    {name = "Andrey",email = "pustakovandrej@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12"
+
+[tool.poetry.dependencies]
+python = "3.12.8"
+appdirs = "1.4.4"
+attrs = "24.3.0"
+black = "19.10b0"
+cachecontrol = "0.14.1"
+certifi = "2024.12.14"
+charset-normalizer = "3.4.1"
+click = "8.0.3"
+colorama = "0.4.6"
+dulwich = "0.22.7"
+fastjsonschema = "2.21.1"
+filelock = "3.16.1"
+flake8 = "7.1.1"
+idna = "3.10"
+isort = "5.13.2"
+mypy_extensions = "1.0.0"
+packaging = "24.2"
+pathspec = "0.10.3"
+pyyaml = "6.0.2"
+regex = "2024.9.11"
+requests = "2.32.3"
+typing_extensions = "4.12.2"
+urllib3 = "2.3.0"
+virtualenv = "20.28.1"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "4.0.1"
+tomlkit = "0.13.2"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
