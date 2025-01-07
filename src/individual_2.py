@@ -51,7 +51,7 @@ class Money:
         """
 
         total_rubles, total_kopeks = self.total_value()
-        print(f"Сумма: {total_rubles},{int(total_kopeks):02d} руб.")
+        print(f"Сумма: {total_rubles},{int(abs(total_kopeks)):02d} руб.")
 
     def total_value(self):
         """
@@ -93,7 +93,7 @@ class Money:
 
         result = Money()
         for denom in self.denominations:
-            result.amounts[denom] = int(self.amounts[denom] / number)
+            result.amounts[denom] = self.amounts[denom] / number
         return result
 
     def multiplication(self, number):
@@ -103,7 +103,7 @@ class Money:
 
         result = Money()
         for denom in self.denominations:
-            result.amounts[denom] = int(self.amounts[denom] * number)
+            result.amounts[denom] = self.amounts[denom] * number
         return result
 
     def equivalent(self, other):
