@@ -22,7 +22,12 @@ class Pair:
         self.second = int(second)  # Количество товара
 
     def read(self):
-        # Ввод значений с клавиатуры
+        """
+        Ввод значений атрибутов для нового объекта с клавиатуры.
+
+        :return: Успех или не успех ввода значений.
+        """
+
         try:
             self.first = float(input("Введите цену товара (положительное дробное число): "))
             if self.first <= 0:
@@ -37,16 +42,29 @@ class Pair:
         return True
 
     def display(self):
-        # Вывод информации о товаре
+        """
+        Вывод информации о товаре.
+        """
+
         print(f"Цена товара: {self.first}, Количество: {self.second}")
 
     def cost(self):
-        # Метод для вычисления стоимости товара
+        """
+        Метод для вычисления стоимости товара.
+        """
+
         return self.first * self.second
 
 
 def make_pair(first, second):
-    # Функция для создания объекта Pair
+    """
+    Функция для создания объекта класса Pair.
+
+    :param first: Атрибут, цена товара;
+    :param second: Атрибут, количество единиц товара.
+    :return: Созданный объект.
+    """
+
     try:
         return Pair(first, second)
     except ValueError as e:
