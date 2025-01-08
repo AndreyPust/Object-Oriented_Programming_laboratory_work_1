@@ -10,6 +10,7 @@ class Pair:
     def __init__(self, first, second):
         """
         Метод инициализации, проверяет аргументы на корректность.
+        Проверку на корректность создадим с помощью обработки исключений.
         """
 
         if not isinstance(first, (int, float)) or first <= 0:
@@ -59,7 +60,7 @@ if __name__ == "__main__":
     pair = make_pair(19.99, 5)
 
     if pair:
-        pair.display()  # Вывод данных
+        pair.display()  # Вывод данных об объекте
         print(f"Общая стоимость: {pair.cost()}")  # Расчёт стоимости
 
     # Ввод данных с клавиатуры
